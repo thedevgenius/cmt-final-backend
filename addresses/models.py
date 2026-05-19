@@ -9,6 +9,10 @@ class State(models.Model):
     def __str__(self):
         return self.name
     
+    class Meta:
+        verbose_name_plural = 'States'
+        db_table = 'states'
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = generate_unique_slug(self, self.name, slug_field_name='slug')
@@ -26,8 +30,9 @@ class City(models.Model):
     
     class Meta:
         unique_together = ('name', 'state')
+        db_table = 'cities'
         verbose_name_plural = 'Cities'
-    
+        
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = generate_unique_slug(self, self.name, slug_field_name='slug')

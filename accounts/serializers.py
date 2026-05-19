@@ -20,3 +20,13 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
         if User.objects.exclude(pk=user.pk).filter(email=value).exists():
             raise serializers.ValidationError("This email is already in use by another account.")
         return value
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        # List the exact fields you want to expose to the frontend
+        # Assuming you are using 'phone' and 'full_name' based on previous code
+        fields = ['id', 'phone', 'full_name', 'email', 'is_active', 'date_joined']
+        
+        # We set these as read-only just as a safety measure
+        read_only_fields = ['id', 'phone', 'is_active', 'date_joined']

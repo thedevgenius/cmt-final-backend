@@ -5,7 +5,7 @@ from .views import RequestOTPView, VerifyOTPView
 app_name = 'auths' 
 
 urlpatterns = [
-    path('request-otp/', RequestOTPView.as_view(), name='request_otp'),
-    path('verify-otp/', VerifyOTPView.as_view(), name='verify_otp'),
+    path('otp/request/', RequestOTPView.as_view(), name='request_otp'),
+    path('otp/verify/', VerifyOTPView.as_view(), name='verify_otp'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

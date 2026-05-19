@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .serializers import UserProfileUpdateSerializer
+from .serializers import UserProfileUpdateSerializer, UserProfileSerializer
 
 class UserProfileUpdateView(APIView):
     """
@@ -55,3 +55,20 @@ class UserProfileUpdateView(APIView):
             }, status=status.HTTP_200_OK)
             
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class UserProfileView(APIView):
+    """
+    Endpoint to retrieve the profile details of the currently authenticated user.
+    """
+    # Enforce that a valid JWT token must be provided
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        # request.user automatically holds the user instance attached to the provided JWT token
+        serializer = UserProfileSerializer(request.user)
+        
+        return Response({
+            "success": True,
+            "data": serializer.data
+        }, status=status.HTTP_200_OK)

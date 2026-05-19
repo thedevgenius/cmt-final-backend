@@ -24,6 +24,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
+        db_table = 'categories'
         indexes = [
             models.Index(fields=['name'], name='name_idx'),
             models.Index(fields=['slug'], name='slug_idx'),
