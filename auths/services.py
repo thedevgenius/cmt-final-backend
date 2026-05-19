@@ -14,6 +14,7 @@ def send_and_store_otp(phone):
 
     user, created = User.objects.get_or_create(
         phone=phone,
+        defaults={"is_active": False}
     )
 
     url = "https://api.msg91.com/api/v5/widget/sendOtp"

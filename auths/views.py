@@ -64,6 +64,7 @@ class VerifyOTPView(APIView):
         
         user, created = User.objects.get_or_create(
             phone=phone,
+            defaults={"is_active": True}
         )
 
         if not user.is_active:
