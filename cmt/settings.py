@@ -47,10 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 
     'django_filters',
     'rest_framework',
-
+    
     'core',
     'auths',
     'accounts',
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,6 +74,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'cmt.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "https://comynity.com",
+]
 
 TEMPLATES = [
     {
