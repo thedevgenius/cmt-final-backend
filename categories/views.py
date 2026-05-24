@@ -6,7 +6,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from core.pagination import StandardResultsSetPagination
 from .models import Category
-from .serializers import CategoryListSerializer
+from .serializers import CategoryListSerializer, CategoryDetailSerializer
 
 
 class CategoryTreeView(APIView):
@@ -66,3 +66,19 @@ class CategoryListView(ListAPIView):
     # 4. Ordering Filters (e.g., ?ordering=-order or ?ordering=name)
     ordering_fields = ['order', 'name', 'id']
     ordering = ['order'] # Default ordering if none is provided
+
+
+class CategoryDetailView(APIView):
+    """
+    API View to retrieve a single category by its slug.
+    """
+    permission_classes = [AllowAny]
+    serializer_class = CategoryDetailSerializer
+
+    def get(self, request, slug, format=None):
+        try:
+            category = Category.objects.get(slug=slug)
+            serializer = CategoryDetailSerializer(category)
+            return Response(serializer.data)
+        except Category.DoesNotExist:
+            return Response({"error": "Category not found"}, status=404)

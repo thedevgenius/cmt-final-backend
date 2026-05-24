@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'accounts',
     'categories',
     'addresses',
+    'businesses',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
