@@ -78,6 +78,8 @@ ROOT_URLCONF = 'cmt.urls'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://comynity.com",
+    "http://10.74.154.149:3000"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
