@@ -85,6 +85,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "https://comynity.com",
+    "http://10.74.154.149:3000"
 ]
 
 TEMPLATES = [
